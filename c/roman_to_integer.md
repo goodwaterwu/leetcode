@@ -57,3 +57,48 @@ int romanToInt(char * s){
 	return ret;
 }
 ```
+```c
+int romanToInt(char *s)
+{
+    const int roman[] = { 1, 5, 10, 50, 100, 500, 1000 };
+    int integer = 0;
+
+    while (*s != '\0') {
+        switch (*s) {
+        case 'I':
+            if (*(s + 1) == 'V' || *(s + 1) == 'X')
+                integer -= roman[0];
+            else
+                integer += roman[0];
+            break;
+        case 'V':
+            integer += roman[1];
+            break;
+        case 'X':
+            if (*(s + 1) == 'L' || *(s + 1) == 'C')
+                integer -= roman[2];
+            else
+                integer += roman[2];
+            break;
+        case 'L':
+            integer += roman[3];
+            break;
+        case 'C':
+            if (*(s + 1) == 'D' || *(s + 1) == 'M')
+                integer -= roman[4];
+            else
+                integer += roman[4];
+            break;
+        case 'D':
+            integer += roman[5];
+            break;
+        case 'M':
+            integer += roman[6];
+            break;
+        }
+        s++;
+    }
+
+    return integer;
+}
+```
