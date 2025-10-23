@@ -93,5 +93,44 @@ int* preorderTraversal(struct TreeNode* root, int* returnSize) {
 
     return arr; /* Return traversal result */
 }
+```
+```c
+/* 144. Binary Tree Preorder Traversal */
 
+/* Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     struct TreeNode *left;
+ *     struct TreeNode *right;
+ * };
+ */
+
+/* Recursive helper function for preorder traversal
+ * Visit order: Node → Left → Right
+ */
+void preorder(struct TreeNode *root, int *returnSize, int *arr) {
+    if (!root)
+        return; /* Base case: empty node */
+
+    arr[*returnSize] = root->val; /* Visit current node */
+    (*returnSize)++;
+
+    preorder(root->left, returnSize, arr);  /* Traverse left subtree */
+    preorder(root->right, returnSize, arr); /* Traverse right subtree */
+}
+
+/* Main function to perform preorder traversal
+ * Returns an array containing the traversal result
+ */
+int* preorderTraversal(struct TreeNode* root, int* returnSize) {
+    *returnSize = 0;
+    if (!root)
+        return NULL; /* Handle empty tree */
+
+    int *arr = (int *)malloc(100 * sizeof(int)); /* Allocate space for result */
+
+    preorder(root, returnSize, arr); /* Perform recursive preorder traversal */
+
+    return arr; /* Return traversal result */
+}
 ```
